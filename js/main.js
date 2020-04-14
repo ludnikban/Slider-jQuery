@@ -62,15 +62,14 @@ $next.on('click', clickNext);
 $previous.on('click', clickPrevious);
 
 let clickIndicator = (e) => {
-  let target = e.target;
     pauseSlideShow(); 
-    goToSlide(+target.getAttribute('data-slide-to'));
-    $(target).css('backgroundColor', 'red');
+    goToSlide(+e.target.getAttribute('data-slide-to'));
+    $(e.target).css('backgroundColor', 'red');
     if (prevInd !== null) $(prevInd).removeAttr('style');
-    prevInd = target;
+    prevInd = e.target;
 }
 
-$indicator.on('click', clickIndicator);
+$indicator.on('click', '.indicators__item', clickIndicator);
 
 let pressKey = (e) => {
   if (e.key === KEY_LEFT_ARROW) clickPrevious();
